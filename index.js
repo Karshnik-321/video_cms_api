@@ -12,11 +12,11 @@ app.use(express.json())
 
 const version = require("./config/config.json").version;
 var route_path = `./Routes/${version}`;
-var authMiddleware = require("./middleware/auth").authMiddleware;
+// var authMiddleware = require("./middleware/auth").authMiddleware;
 const authRouter = require(route_path+"/Auth/authRoute");
 
 
-const errorMiddlename = require("./middleware/error-middleware");
+// const errorMiddlename = require("./middleware/error-middleware");
 
 app.use("/api/v1", [ 
     authRouter,
@@ -24,7 +24,7 @@ app.use("/api/v1", [
 
 
 
-app.use(errorMiddlename);
+// app.use(errorMiddlename);
 const port = process.env.PORT || 3001;
 
 app.listen(port,()=>console.log(`Server Started on port ${port}`));
