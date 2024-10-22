@@ -80,4 +80,39 @@ module.exports = {
             return res.status(500).json({ message: 'Server error', error: error.message });
         }
     },
+    updateUser: async (req, res) => {
+        const userId = req.params.id; 
+        const { first_name, last_name, email, password, role } = req.body;
+        if (!first_name && !last_name && !email && !password && !role) {
+            return res.status(400).json({ message: 'At least one field is required to update' });
+        }
+        try {
+            const user = await User.findByPk(userId);
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            const updateData = {};
+            if (first_name) updateData.first_name = first_name;
+            if (last_name) updateData.last_name = last_name;
+            // if (email) updateData.email = email;
+            if (role) updateData.role = role;
+            if (password) {
+                updateData.password = await bcrypt.hash(password, 10);
+            }
+            await user.update(updateData);
+            return res.status(200).json({
+                message: 'User updated successfully',
+                user: {
+                    id: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    role: user.role,
+                },
+            });
+        } catch (error) {
+            console.error('Error in user update:', error);
+            return res.status(500).json({ message: 'Server error', error: error.message });
+        }
+    },
 };
