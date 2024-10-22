@@ -8,8 +8,8 @@ const CRUD = imp_import.utility;
 module.exports = {
 
     create:function (request, response) {  
-        console.log('I run')  
-    //    CRUD.create(db,response,request.body); 
+        // console.log('I run')  
+       CRUD.create(db,response,request.body); 
     },
 
     get:function (request, response) {
