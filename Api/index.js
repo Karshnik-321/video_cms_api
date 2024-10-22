@@ -16,7 +16,7 @@ var route_path = `./Routes/${version}`;
 const authRouter = require(route_path+"/Auth/authRoute");
 const editorRouter = require(route_path+"/editor/editorRoute");
 const campaignRouter = require(route_path+"/campaign/campaignRoute");
-
+const platformRouter = require(route_path+"/platform/platformRoute")
 
 
 // console.log(editorRouter)
@@ -25,7 +25,8 @@ const campaignRouter = require(route_path+"/campaign/campaignRoute");
 app.use("/api/v1", [ 
     authRouter,
     editorRouter,
-    campaignRouter
+    campaignRouter,
+    platformRouter
 ]);
 
 
