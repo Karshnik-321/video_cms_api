@@ -16,6 +16,9 @@ var route_path = `./Routes/${version}`;
 const authRouter = require(route_path+"/Auth/authRoute");
 const editorRouter = require(route_path+"/editor/editorRoute");
 const campaignRouter = require(route_path+"/campaign/campaignRoute");
+
+
+
 // console.log(editorRouter)
 // const errorMiddlename = require("./middleware/error-middleware");
 
