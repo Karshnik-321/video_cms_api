@@ -18,10 +18,10 @@ module.exports = {
 
 
         try {
-            // Create a new campaign using Sequelize's create method
+            // Create a new platform using Sequelize's create method
             const newPlatform = await db.create(PlatformData);
 
-            // Only return id, campaign_name, and status
+            // Only return id, platform_name, and status
             return response.status(201).json({
                 message: "Platform created successfully",
                 data: {

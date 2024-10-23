@@ -7,10 +7,10 @@ const CRUD = imp_import.utility;
 module.exports = {
 
     create: async function (request, response) {
-        const TeamData = request.body;
+        const teamData = request.body;
 
         // Manual validation
-        if (!TeamData.team_name || typeof TeamData.team_name !== 'string') {
+        if (!teamData.team_name || typeof teamData.team_name !== 'string') {
             return response.status(400).json({
                 message: "Invalid data: 'team_name' is required and must be a string"
             });
@@ -19,7 +19,7 @@ module.exports = {
 
         try {
             // Create a new campaign using Sequelize's create method
-            const newTeam = await db.create(TeamData);
+            const newTeam = await db.create(teamData);
 
             // Only return id, campaign_name, and status
             return response.status(201).json({
