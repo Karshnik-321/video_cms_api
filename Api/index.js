@@ -16,7 +16,9 @@ var route_path = `./Routes/${version}`;
 const authRouter = require(route_path+"/Auth/authRoute");
 const editorRouter = require(route_path+"/editor/editorRoute");
 const campaignRouter = require(route_path+"/campaign/campaignRoute");
-const platformRouter = require(route_path+"/platform/platformRoute")
+const platformRouter = require(route_path+"/platform/platformRoute");
+const productRouter = require(route_path+"/product/productRoute");
+const teamRouter = require(route_path+"/team/teamRoute");
 
 
 // console.log(editorRouter)
@@ -26,10 +28,10 @@ app.use("/api/v1", [
     authRouter,
     editorRouter,
     campaignRouter,
-    platformRouter
+    platformRouter,
+    productRouter,
+    teamRouter
 ]);
-
-
 
 // app.use(errorMiddlename);
 const port = process.env.PORT || 3001;
