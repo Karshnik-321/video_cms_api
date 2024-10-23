@@ -1,7 +1,6 @@
 const imp_import = require("../index"); 
 
 const db = imp_import.db.Campaign;
-
 const CRUD = imp_import.utility;
 
 module.exports = {

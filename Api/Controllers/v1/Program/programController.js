@@ -1,38 +1,40 @@
 const imp_import = require("../index"); 
 
-const db = imp_import.db.Product;
-
+const db = imp_import.db.Program;
 const CRUD = imp_import.utility;
 
 module.exports = {
 
     create: async function (request, response) {
-        const ProductData = request.body;
-
+        const programData = request.body;
         // Manual validation
-        if (!ProductData.product_name || typeof ProductData.product_name !== 'string') {
+        if (!programData.program_name || typeof programData.program_name !== 'string') {
             return response.status(400).json({
-                message: "Invalid data: 'product_name' is required and must be a string"
+                message: "Invalid data: 'program_name' is required and must be a string"
             });
         }
-
-
+      if (!programData.product_id || typeof programData.product_id !== 'number') {
+        return response.status(400).json({
+            message: "Invalid data: 'product_id' is required and must be an integer"
+        });
+    }
         try {
-            // Create a new product using Sequelize's create method
-            const newProduct = await db.create(ProductData);
-
-            // Only return id, product_name, and status
+            // Create a new program using Sequelize's create method
+            const newProgram = await db.create(programData);
+            // Only return id, program_name, and status
             return response.status(201).json({
-                message: "Product created successfully",
+                message: "Program created successfully",
                 data: {
-                    id: newProduct.id,
-                    product_name: newProduct.product_name,
-                    status: newProduct.status
+                    
+                    id: newProgram.id,
+                    product_id:newProgram.product_id,
+                    program_name: newProgram.program_name,
+                    status: newProgram.status
                 }
             });
         } catch (error) {
             return response.status(500).json({
-                message: "Error creating product",
+                message: "Error creating program ",
                 error: error.message
             });
         }
@@ -50,7 +52,7 @@ module.exports = {
     update: async function (request, response) {
         const id = request.params.id; 
         const updateData = request.body;
-        const allowedUpdates = ['product_name', 'status'];
+        const allowedUpdates = ['program_name','product_id','status'];
         const filteredData = {};
         for (const key of allowedUpdates) {
             if (updateData[key] !== undefined) {
@@ -68,16 +70,16 @@ module.exports = {
             const [updatedRows] = await db.update(filteredData, condition);
             if (updatedRows === 0) {
                 return response.status(404).json({
-                    message: "Product not found or no changes detected"
+                    message: "Program not found or no changes detected"
                 });
             }
     
             return response.status(200).json({
-                message: "Product updated successfully"
+                message: "Program updated successfully"
             });
         } catch (error) {
             return response.status(500).json({
-                message: "Error updating product",
+                message: "Error updating program",
                 error: error.message
             });
         }

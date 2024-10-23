@@ -19,7 +19,11 @@ const campaignRouter = require(route_path+"/campaign/campaignRoute");
 const platformRouter = require(route_path+"/platform/platformRoute");
 const productRouter = require(route_path+"/product/productRoute");
 const teamRouter = require(route_path+"/team/teamRoute");
-
+const contentTypeRouter = require(route_path+"/content_type/contentTypeRoute");
+const programRouter = require(route_path+"/program/programRoute");
+const projectRouter = require(route_path+"/project/projectRoute");
+const sourceRouter = require(route_path+"/source/sourceRoute");
+const treatmentRouter = require(route_path+"/treatment/treatmentRoute");
 
 // console.log(editorRouter)
 // const errorMiddlename = require("./middleware/error-middleware");
@@ -30,7 +34,13 @@ app.use("/api/v1", [
     campaignRouter,
     platformRouter,
     productRouter,
-    teamRouter
+    teamRouter,
+    contentTypeRouter,
+    programRouter,
+    projectRouter,
+    sourceRouter,
+    treatmentRouter
+    
 ]);
 
 // app.use(errorMiddlename);
