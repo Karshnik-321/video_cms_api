@@ -66,6 +66,7 @@ module.exports = {
         try { 
             const condition = { where: { id: id } };
             const [updatedRows] = await db.update(filteredData, condition);
+           
             if (updatedRows === 0) {
                 return response.status(404).json({
                     message: "Platform not found or no changes detected"
